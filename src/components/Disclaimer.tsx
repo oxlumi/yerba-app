@@ -5,7 +5,7 @@ export const Disclaimer = () => {
   return (
     <Container>
       <Typography variant='h1'>
-        Disclaimer: This application is currently in beta. Please proceed at your own risk. Any funds lost through its
+        ⚠️ Disclaimer: This application is currently in beta. Please proceed at your own risk. Any funds lost through its
         use are non-recoverable.
       </Typography>
     </Container>

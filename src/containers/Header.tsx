@@ -11,9 +11,9 @@ export const Header = () => {
 
   return (
     <StyledHeader>
-      <Logo>Logo</Logo>
+      <Logo>YERBA COFFEE</Logo>
       <SIconButton onClick={changeTheme}>{theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}</SIconButton>
-      <ConnectButton />
+      <ConnectButton label="Sign in"/>
     </StyledHeader>
   );
 };

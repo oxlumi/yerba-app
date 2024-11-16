@@ -5,10 +5,8 @@ import { FOOTER_HEIGHT } from '~/utils';
 export const Footer = () => {
   return (
     <FooterContainer>
-      <h1>Footer</h1>
       <Subtitle>
-        <p>Made with 💜 by</p>
-        <a href='https://defi.sucks'>Wonderland</a>
+        <p>Web3 Boiler Plate from <a href='https://defi.sucks'>Wonderland 🐇</a> | Made with 🤍 by @d4rm5, @santi-nihany and @oxlumi</p>
       </Subtitle>
     </FooterContainer>
   );
@@ -21,7 +19,7 @@ const FooterContainer = styled('footer')(() => {
     height: `${FOOTER_HEIGHT}rem`,
     padding: '0 8rem',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     backgroundColor: currentTheme.backgroundSecondary,
     borderTop: currentTheme.border,
     width: '100%',

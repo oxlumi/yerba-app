@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Web3 Boilerplate</title>
+        <title>Yerba Coffee</title>
       </Head>
       <Landing />
     </>

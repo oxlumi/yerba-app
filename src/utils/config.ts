@@ -22,7 +22,7 @@ const connectors = connectorsForWallets(
     },
   ],
   {
-    appName: 'Web3 React boilerplate',
+    appName: 'Yerba Coffee',
     projectId: PROJECT_ID,
   },
 );
