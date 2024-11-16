@@ -1,26 +1,10 @@
 import { connectorsForWallets, Chain} from '@rainbow-me/rainbowkit';
 import { rainbowWallet, walletConnectWallet, injectedWallet } from '@rainbow-me/rainbowkit/wallets';
 import { createConfig, http, cookieStorage, createStorage } from 'wagmi';
+import { baseSepolia, sepolia, worldchainSepolia} from 'wagmi/chains';
 import { getConfig } from '~/config';
 
 const { PROJECT_ID } = getConfig().env;
-
-const supersim = {
-  id: 901,
-  name: 'Supersim',
-  iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
-  iconBackground: '#fff',
-  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
-  rpcUrls: {
-    default: { http: ['http://127.0.0.1:9545'] },
-  },
-  contracts: {
-    multicall3: {
-      address: '0xca11bde05977b3631167028862be2a173976ca11',
-      blockCreated: 11_907_934,
-    },
-  },
-} as const satisfies Chain;
 
 
 const getWallets = () => {
@@ -30,6 +14,11 @@ const getWallets = () => {
     return [injectedWallet];
   }
 };
+
+const customWorldchainSepolia = {
+  ...worldchainSepolia,
+  iconUrl: 'https://cryptologos.cc/logos/worldcoin-org-wld-logo.png'
+}
 
 const connectors = connectorsForWallets(
   [
@@ -45,13 +34,16 @@ const connectors = connectorsForWallets(
 );
 
 export const config = createConfig({
-  chains: [supersim],
+  chains: [baseSepolia, sepolia, customWorldchainSepolia],
   ssr: true,
   storage: createStorage({
     storage: cookieStorage,
   }),
   transports: {
-    [supersim.id]: http(),
+    // Please, check local RPCs before running!
+    [sepolia.id]: http('http://127.0.0.1:9545', { batch: true }), 
+    [customWorldchainSepolia.id]: http('http://127.0.0.1:9545', { batch: true }),
+    [baseSepolia.id]: http('http://127.0.0.1:9546', { batch: true }),
   },
   batch: { multicall: true },
   connectors,
