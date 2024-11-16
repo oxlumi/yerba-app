@@ -1,7 +1,7 @@
 import { connectorsForWallets, Chain} from '@rainbow-me/rainbowkit';
 import { rainbowWallet, walletConnectWallet, injectedWallet } from '@rainbow-me/rainbowkit/wallets';
 import { createConfig, http, cookieStorage, createStorage } from 'wagmi';
-import { baseSepolia, sepolia, worldchainSepolia} from 'wagmi/chains';
+import { baseSepolia, sepolia, celoAlfajores, unichainSepolia, optimismSepolia, zoraSepolia} from 'wagmi/chains';
 import { getConfig } from '~/config';
 
 const { PROJECT_ID } = getConfig().env;
@@ -15,9 +15,11 @@ const getWallets = () => {
   }
 };
 
-const customWorldchainSepolia = {
-  ...worldchainSepolia,
-  iconUrl: 'https://cryptologos.cc/logos/worldcoin-org-wld-logo.png'
+
+const customUnichainSepolia = {
+  ...unichainSepolia,
+  name: 'Unichain Sepolia',
+  iconUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIOk2BmIfo12hx0k8FiNNC9MJgop2AAEIoFg&s'
 }
 
 const connectors = connectorsForWallets(
@@ -34,7 +36,7 @@ const connectors = connectorsForWallets(
 );
 
 export const config = createConfig({
-  chains: [baseSepolia, sepolia, customWorldchainSepolia],
+  chains: [optimismSepolia, baseSepolia, sepolia, customUnichainSepolia, celoAlfajores, zoraSepolia],
   ssr: true,
   storage: createStorage({
     storage: cookieStorage,
@@ -42,8 +44,11 @@ export const config = createConfig({
   transports: {
     // Please, check local RPCs before running!
     [sepolia.id]: http('http://127.0.0.1:9545', { batch: true }), 
-    [customWorldchainSepolia.id]: http('http://127.0.0.1:9545', { batch: true }),
     [baseSepolia.id]: http('http://127.0.0.1:9546', { batch: true }),
+    [celoAlfajores.id]: http(),
+    [customUnichainSepolia.id]: http('http://127.0,0,1:9546', { batch: true }),
+    [optimismSepolia.id]: http(),
+    [zoraSepolia.id]: http(),
   },
   batch: { multicall: true },
   connectors,
