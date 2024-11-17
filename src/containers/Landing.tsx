@@ -28,7 +28,7 @@ const ProductCard = ({ product, onBuyClick }) => (
     <ProductName>{product.name}</ProductName>
     <ProductPrice>{product.price}</ProductPrice>
     <BuyButton variant="contained" onClick={() => onBuyClick(product)}>
-      BUY
+      BUY <img src="/assets/1_Heads/head-bank.png" style={{ width: '20px', height: '20px' }} />
     </BuyButton>
   </CardContainer>
 );
@@ -70,13 +70,13 @@ export const Landing = () => {
 
   return (
     <LandingContainer>
+      <img src="/assets/2_Glasses/glasses-square-red.png" alt="Glasses Square Red" style={{ width: '30%', maxHeight: '200px', objectFit: 'cover', borderRadius: '8px'}} />
       <Header>Welcome to Yerba Coffee Shop</Header>
       <ProductGrid>
         {products.map((product) => (
           <ProductCard key={product.id} product={product} onBuyClick={handleBuyClick} />
         ))}
       </ProductGrid>
-
       <Dialog
         open={isModalOpen}
         onClose={handleClose}
@@ -120,7 +120,6 @@ export const Landing = () => {
                 🎉 Success! Show this to the cashier.
               </Typography>
               <ProductImagePreview src={selectedProduct?.image} alt={selectedProduct?.name} />
-              
               {/* Toggle para información avanzada */}
               <Box display="flex" alignItems="center" gap="0.5rem" mt={2}>
                 <Typography>Show Advanced Information</Typography>
@@ -171,10 +170,11 @@ const LandingContainer = styled('div')({
 });
 
 const Header = styled('h1')({
+  marginTop: '0rem',
   fontSize: '5.5rem',
   fontFamily: 'sans-serif',
   textAlign: 'center',
-  marginBottom: '2rem',
+  marginBottom: '0rem',
 });
 
 const ProductGrid = styled('div')({

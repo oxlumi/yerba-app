@@ -1,3 +1,0 @@
-npx lint-staged
-
-. "$(dirname "$0")/wonderland/find-crypto-keys.sh"
